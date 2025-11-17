@@ -9,7 +9,17 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
+
+const cors = require("cors")
+const corsOptions = {
+    origin: "*", 
+    credentials: true,
+}
+app.use(cors(corsOptions))
+
+
 makeDbConnection()
+
 
 app.post("/leads", async (req, res) => {
     try{
