@@ -40,7 +40,7 @@ app.post("/leads", async (req, res) => {
 
 app.get("/leads", async (req, res) => {
     try{
-        const allLeads = await Lead.find()
+        const allLeads = await Lead.find().populate("salesAgent", "name")
         if(allLeads.length != 0){
             res.status(200).json(allLeads)
         }else{
