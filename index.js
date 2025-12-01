@@ -145,7 +145,8 @@ app.post("/leads/:id/comments", async (req, res) => {
 
 app.get("/leads/:id/comments", async (req, res) => {
     try{
-        const allComments = await Comment.find().populate("author", "name")
+        const {id} = req.params;
+        const allComments = await Comment.find({lead: id}).populate("author", "name")
         if(allComments.length != 0){
             res.status(200).json(allComments)
         }else{
