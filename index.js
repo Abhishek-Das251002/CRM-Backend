@@ -147,11 +147,7 @@ app.get("/leads/:id/comments", async (req, res) => {
     try{
         const {id} = req.params;
         const allComments = await Comment.find({lead: id}).populate("author", "name")
-        if(allComments.length != 0){
-            res.status(200).json(allComments)
-        }else{
-            res.status(404).json("comments not found")
-        }
+        res.status(200).json(allComments)
     }catch(error){
         res.status(500).json({error: error.message})
     }
