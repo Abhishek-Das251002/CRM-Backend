@@ -109,6 +109,20 @@ app.get("/agents", async (req, res) => {
 })
 
 
+app.delete("/agents/:id", async (req, res) => {
+    try{
+        const deleteAgent = await SalesAgent.findByIdAndDelete(req.params.id)
+        if(deleteAgent){
+            res.status(200).json("Agent deleted successfully")
+        }else{
+            res.status(404).json(`Agent with ID ${req.params.id} not found.`)
+        }
+    }catch(error){
+        res.status(500).json({error: error.message})
+    }
+})
+
+
 app.post("/leads/:id/comments", async (req, res) => {
     try{
         const {id} = req.params;
