@@ -10,7 +10,7 @@ const commentSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'SalesAgent',  // Reference to the SalesAgent who authored the comment
-    required: [true, 'Author is required'],
+    // required: [true, 'Author is required'],
   },
   commentText: {
     type: String,
